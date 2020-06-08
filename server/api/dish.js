@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
                 dishs: dishs.map((dish) => {
                     return dish.toDto();
                 })
-            }).statusCode(200);
+            }).status(200);
         });
 });
 

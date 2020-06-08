@@ -13,8 +13,8 @@ var sha512 = require('js-sha512');
 
 
 //Changer les ID un par un pour créer
-/*User.create({name: 'Moulin', firstname: "Jean", imagepath: "test", password: "test", email : "jm@test.fr", active : true, tel : "0123456789", address : "test test", city : "clermont city", zip : "63000"}, function(err, doc) {
-});*/
+// User.create({name: 'Moulin', firstname: "Jean", imagepath: "test", password: "test", email : "jm@test.fr", active : true, tel : "0123456789", address : "test test", city : "clermont city", zip : "63000"}, function(err, doc) {
+// });
 
 /*Dish.create({title: 'dish test', description: "test description", imagepath: "test", ingredients: "test", keywords : "test", categories : "test", mark : 0, nbmark : 0, user : '5ec79e9e1b23edf38b62cdf1', prix : 10}, function(err, doc) {
 });*/

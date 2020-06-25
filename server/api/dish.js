@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
             if (!dishs) { return res.sendStatus(404); }
 
             return res.json({
-                dishs: dishs.map((dish) => {
+                dishes: dishs.map((dish) => {
                     return dish.toDto();
                 })
             }).status(200);

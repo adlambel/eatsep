@@ -40,6 +40,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    // console.log(req)
     if (!req.body.dishDate || !req.body.user ) {
         res.sendStatus(422);
     }
@@ -49,7 +50,6 @@ router.post('/', (req, res) => {
     reservation.user = req.body.user;
     reservation.comment = req.body.comment;
     reservation.isAccepted = req.body.isAccepted;
-    reservation.location = req.body.location;
 
     reservation.save().then(() => {
         res.json(reservation.toDto()).status(201)
@@ -67,7 +67,6 @@ router.put('/', (req, res) => {
         reservation.user = req.body.user;
         reservation.comment = req.body.comment;
         reservation.isAccepted = req.body.isAccepted;
-        reservation.location = req.body.location;
 
         reservation.save().then(() => {
             res.json(reservation.toDto()).status(200);

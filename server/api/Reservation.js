@@ -25,7 +25,8 @@ router.param('reservation', function (req, res, next, id) {
 router.get('/', (req, res) => {
 
     Reservation.find()
-        .populate('dishDate')
+        .populate({path: 'dishDate',
+                   populate: { path: 'dish', model: 'Dish' }})
         .populate('user')
         .then((reservations) => {
             if (!reservations) { return res.sendStatus(404); }

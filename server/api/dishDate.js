@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
                 dishDates: dishDates.map((dishDates) => {
                     return dishDates.toDto();
                 })
-            }).statusCode(200);
+            }).status(200);
         });
 });
 

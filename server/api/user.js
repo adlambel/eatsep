@@ -13,16 +13,18 @@ var sha512 = require('js-sha512');
 
 
 //Changer les ID un par un pour créer
-// User.create({name: 'Moulin', firstname: "Jean", imagepath: "test", password: "test", email : "jm@test.fr", active : true, tel : "0123456789", address : "test test", city : "clermont city", zip : "63000"}, function(err, doc) {
-// });
+ /*User.create({name: 'Moulin', firstname: "Jean", imagepath: "test", password: "test", email : "jm@test.fr", active : true, tel : "0123456789", address : "test test", city : "clermont city", zip : "63000"}, function(err, doc) {
+ });*/
 
-/*Dish.create({title: 'dish test', description: "test description", imagepath: "test", ingredients: "test", keywords : "test", categories : "test", mark : 0, nbmark : 0, user : '5ec79e9e1b23edf38b62cdf1', prix : 10}, function(err, doc) {
-});*/
-
-/*DateD.create({dish: '5ec79ebca5b2fbf3a2a09dc2', date: new Date()}, function(err, doc) {
+/*
+Dish.create({title: 'dish test', description: "test description", images: "test", ingredients: "test", keywords : "test", categories : "test", mark : 0, nbmark : 0, user : '5ef4f5cd1807622b0f5947d4', prix : 10}, function(err, doc) {
 });
+*/
+
+/*DateD.create({dish: '5ef4f6172bf1fa2b24b5c35d', date: new Date()}, function(err, doc) {
+});*/
 //5eb2b25c3320cb00ca812430
-Image.create({name: 'test'}, function(err, doc) {
+/*Image.create({name: 'test'}, function(err, doc) {
 });*/
 //5eb2b25c3320cb00ca812431
 

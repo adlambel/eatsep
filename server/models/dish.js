@@ -4,7 +4,7 @@ const User = mongoose.model('User');
 let DishSchema = new mongoose.Schema({
     title: {type: String, required: [true, "can't be blank"], index: true},
     description: {type: String, maxlength: 500},
-    images: [{type: mongoose.Schema.Types.ObjectId, ref: 'Image'}],
+    images: {type: String},
     ingredients: {type: String, maxlength: 500},
     keywords: [{type: String, maxlength: 255}],
     categories: [{type: String, maxlength: 255}],
@@ -20,9 +20,7 @@ DishSchema.methods.toDto = function () {
         id: this._id,
         title: this.title,
         description: this.description,
-        images: this.images.map((image) => {
-            return image.toDto();
-        }),
+        images: this.images,
         ingredients: this.ingredients,
         keywords: this.keywords,
         categories: this.categories,

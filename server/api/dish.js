@@ -3,6 +3,20 @@ const mongoose = require('mongoose');
 
 const Dish = mongoose.model('Dish');
 const User = mongoose.model('User');
+const multer = require('multer');
+// SET STORAGE
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../../uploads/images/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.png')
+    }
+})
+
+var limits = { fileSize: 5 * 1024 * 1024, fieldSize: 5 * 1024 * 1024}
+
+var upload = multer({storage: storage, limits: limits})
 
 router.param('dish', function (req, res, next, id) {
 
@@ -12,7 +26,6 @@ router.param('dish', function (req, res, next, id) {
 
     Dish.findById(id)
         .populate('user')
-        .populate('images')
         .then(function (todo) {
             if (!dish) { return res.sendStatus(404); }
 
@@ -26,7 +39,6 @@ router.get('/', (req, res) => {
 
     Dish.find()
         .populate('user')
-        .populate('images')
         .then((dishs) => {
             if (!dishs) { return res.sendStatus(404); }
 
@@ -38,16 +50,21 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
-    console.log(req.body)
+router.post('/', upload.single('dish'),(req, res) => {
     if (!req.body.title || !req.body.description ) {
         res.sendStatus(422);
     }
-
+    const file = req.file
+    if (!file) {
+        const error = new Error('Please upload a png file')
+        error.httpStatusCode = 400
+        return next(error)
+    }
+    const filename = file.filename
     let dish = new Dish();
     dish.title = req.body.title;
     dish.description = req.body.description;
-    dish.images = req.body.images;
+    dish.images = filename;
     dish.ingredients = req.body.ingredients;
     dish.keywords = req.body.keywords;
     dish.categories = req.body.categories;

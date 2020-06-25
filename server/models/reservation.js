@@ -7,6 +7,7 @@ let ReservationSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     isAccepted: {type: Boolean},
     comment: {type: String},
+    location: {type: String}
 }, {timestamps: true});
 
 ReservationSchema.methods.toDto = function () {
@@ -16,7 +17,8 @@ ReservationSchema.methods.toDto = function () {
         dishDate: this.dishDate,
         user: this.user,
         isAccepted: this.isAccepted,
-        comment: this.comment
+        comment: this.comment,
+        location: this.location
     }
 };
 

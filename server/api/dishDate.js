@@ -38,10 +38,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    if (!req.body.dish || !req.body.date ) {
-        res.sendStatus(422);
-    }
-
+    // if (!req.body.dish || !req.body.date ) {
+    //     res.sendStatus(422);
+    // }
+    console.log(req.body);
     let dishDate = new DishDate();
     dishDate.dish = req.body.dish
     dishDate.date = req.body.date

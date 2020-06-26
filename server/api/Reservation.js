@@ -63,9 +63,6 @@ router.put('/', (req, res) => {
     }
 
     Reservation.findById(req.body.id).then((reservation) => {
-        reservation.dishDate = req.body.dishDate;
-        reservation.user = req.body.user;
-        reservation.comment = req.body.comment;
         reservation.isAccepted = req.body.isAccepted;
 
         reservation.save().then(() => {

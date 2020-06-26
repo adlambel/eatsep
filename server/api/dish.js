@@ -72,6 +72,7 @@ router.post('/', upload.any(), (req, res, next) => {
     dish.ingredients = newdish.ingredients;
     dish.keywords = newdish.keywords;
     dish.categories = newdish.categories;
+    dish.prix = newdish.prix;
     dish.user = newdish.user;
     dish.mark = 0;
     dish.nbmark = 0;
@@ -95,6 +96,7 @@ router.put('/', (req, res) => {
         dish.ingredients = req.body.ingredients;
         dish.keywords = req.body.keywords;
         dish.categories = req.body.categories;
+        dish.prix = req.body.prix;
 
         dish.save().then(() => {
             res.json(dish.toDto()).status(200);

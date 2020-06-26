@@ -7,7 +7,7 @@ const multer = require('multer');
 // SET STORAGE
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../../uploads/images/')
+        cb(null, './server/uploads/images/')
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.png')
@@ -50,30 +50,34 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', upload.single('dish'),(req, res) => {
-    if (!req.body.title || !req.body.description ) {
-        res.sendStatus(422);
-    }
-    const file = req.file
+router.post('/', upload.any(), (req, res, next) => {
+    // if (!req.body.title || !req.body.description ) {
+    //     res.sendStatus(422);
+    // }
+    console.log(req);
+
+    const file = req.files[0]
+
     if (!file) {
         const error = new Error('Please upload a png file')
         error.httpStatusCode = 400
         return next(error)
     }
+    let newdish = JSON.parse(req.body.dish);
     const filename = file.filename
     let dish = new Dish();
-    dish.title = req.body.title;
-    dish.description = req.body.description;
+    dish.title = newdish.title;
+    dish.description = newdish.description;
     dish.images = filename;
-    dish.ingredients = req.body.ingredients;
-    dish.keywords = req.body.keywords;
-    dish.categories = req.body.categories;
-    dish.user = req.body.user;
+    dish.ingredients = newdish.ingredients;
+    dish.keywords = newdish.keywords;
+    dish.categories = newdish.categories;
+    dish.user = newdish.user;
     dish.mark = 0;
     dish.nbmark = 0;
 
     dish.save().then(() => {
-        res.json(dish.toDto()).status(201);
+        res.json(dish.toDto());
     })
 
 });
